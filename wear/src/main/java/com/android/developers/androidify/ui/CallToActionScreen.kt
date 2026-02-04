@@ -24,16 +24,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.wear.compose.foundation.lazy.TransformingLazyColumn
 import androidx.wear.compose.foundation.lazy.rememberTransformingLazyColumnState
 import androidx.wear.compose.material3.MaterialTheme
 import androidx.wear.compose.material3.ScreenScaffold
 import androidx.wear.compose.material3.Text
+import androidx.wear.compose.material3.lazy.ResponsiveTransformingLazyColumn
 import androidx.wear.compose.ui.tooling.preview.WearPreviewDevices
 import com.android.developers.androidify.R
 import com.android.developers.androidify.ui.theme.AndroidifyWearTheme
-import com.google.android.horologist.compose.layout.ColumnItemType
-import com.google.android.horologist.compose.layout.rememberResponsiveColumnPadding
 
 @Composable
 fun CallToActionScreen(
@@ -44,13 +42,8 @@ fun CallToActionScreen(
     val listState = rememberTransformingLazyColumnState()
     ScreenScaffold(
         scrollState = listState,
-        // Use Horologist for now to get correct top and bottom padding in list.
-        contentPadding = rememberResponsiveColumnPadding(
-            first = ColumnItemType.IconButton,
-            last = ColumnItemType.Button,
-        ),
     ) { contentPadding ->
-        TransformingLazyColumn(
+        ResponsiveTransformingLazyColumn(
             state = listState,
             contentPadding = contentPadding,
         ) {
